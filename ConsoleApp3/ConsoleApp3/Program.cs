@@ -13,7 +13,9 @@ namespace ConsoleApp3
             Console.WriteLine("eneter");
             Console.WriteLine("hello");
             Console.WriteLine("hello");
+            Console.WriteLine("hello");
         }
+    }
     }
     }
 }
