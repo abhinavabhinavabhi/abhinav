@@ -128,19 +128,51 @@ namespace example
             }
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            screen.Clear();
+        }
+
         private void button10_Click(object sender, EventArgs e)
         {
-            l = Convert.ToInt32(screen.Text);
+            try
+            {
+                l = Convert.ToInt32(screen.Text);
+            }
+            catch (Exception e1)
+
+            {
+                MessageBox.Show("enter input \n");
+
+            }
+
+            string str =screen.Text;
+            
+
             if(o=="+")
             {
                 s = f + l;
                 screen.Text = f + "+" + l + "=" + s;
+                f=s;
+            }
+            if (o == "-")
+            {
+                s = f - l;
+                screen.Text = f + "-" + l + "=" + s;
+                f = s;
+            }
+            if (o == "/")
+            {
+                s = f / l;
+                screen.Text = f + "/" + l + "=" + s;
             }
         }
 
         private void add_Click(object sender, EventArgs e)
-        {
+        {  
+            
             f = Convert.ToInt32(screen.Text);
+            
             o = "+";
             screen.Text = f + "+";
             screen.Clear();
