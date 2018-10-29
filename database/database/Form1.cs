@@ -28,7 +28,14 @@ namespace database
             cmd.CommandType = CommandType.Text;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText= "INSERT into employee values('"+ id.Text+"','"+name.Text+"','"+dept.Text+"')";
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show("check the inputs");
+            }
             con.Close();
             MessageBox.Show("saved");
 
@@ -43,6 +50,25 @@ namespace database
 
         private void update_Click(object sender, EventArgs e)
         {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = " update employee set name='" + name.Text + "', dept='" + dept.Text + "' where id='" + id.Text + "'";
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("saved");
+        }
+
+        private void display_Click(object sender, EventArgs e)
+        {
+            string str = "select * from employee;";
+            SqlDataAdapter myadapter = new SqlDataAdapter();
+            DataTable mytable = new DataTable();
+            myadapter.Fill(mytable);
+            BindingSource bs = new BindingSource();
+            bs.DataSource = mytable;
+            DataGridView 
 
         }
     }

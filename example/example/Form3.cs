@@ -169,10 +169,15 @@ namespace example
         }
 
         private void add_Click(object sender, EventArgs e)
-        {  
-            
-            f = Convert.ToInt32(screen.Text);
-            
+        {
+            try
+            {
+                f = Convert.ToInt32(screen.Text);
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("enter numerics");
+            }
             o = "+";
             screen.Text = f + "+";
             screen.Clear();
