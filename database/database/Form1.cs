@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 namespace database
 {
     public partial class Form1 : Form
-        
+
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\abhinav\database\database\Database1.mdf;Integrated Security=True");
         public Form1()
@@ -27,12 +27,12 @@ namespace database
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText= "INSERT into employee values('"+ id.Text+"','"+name.Text+"','"+dept.Text+"')";
+            cmd.CommandText = "INSERT into employee values('" + id.Text + "','" + name.Text + "','" + dept.Text + "')";
             try
             {
                 cmd.ExecuteNonQuery();
             }
-            catch(Exception e1)
+            catch (Exception e1)
             {
                 MessageBox.Show("check the inputs");
             }
@@ -56,6 +56,8 @@ namespace database
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = " update employee set name='" + name.Text + "', dept='" + dept.Text + "' where id='" + id.Text + "'";
             cmd.ExecuteNonQuery();
+            ret();
+
             con.Close();
             MessageBox.Show("saved");
         }
@@ -63,12 +65,27 @@ namespace database
         private void display_Click(object sender, EventArgs e)
         {
             string str = "select * from employee;";
-            SqlDataAdapter myadapter = new SqlDataAdapter();
+            SqlDataAdapter myadapter = new SqlDataAdapter(str, con);
             DataTable mytable = new DataTable();
             myadapter.Fill(mytable);
             BindingSource bs = new BindingSource();
             bs.DataSource = mytable;
-            DataGridView 
+            dataGridView1.DataSource = bs;
+
+        }
+        public void  ret()
+        {
+            string str = "select * from employee;";
+            SqlDataAdapter myadapter = new SqlDataAdapter(str, con);
+            DataTable mytable = new DataTable();
+            myadapter.Fill(mytable);
+            BindingSource bs = new BindingSource();
+            bs.DataSource = mytable;
+            dataGridView1.DataSource = bs;
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
 
         }
     }

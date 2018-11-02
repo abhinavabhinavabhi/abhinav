@@ -80,6 +80,7 @@
             this.delete.TabIndex = 2;
             this.delete.Text = "delete";
             this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // display
             // 
