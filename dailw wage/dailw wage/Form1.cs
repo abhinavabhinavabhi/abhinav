@@ -72,7 +72,19 @@ namespace dailw_wage
             cmd.CommandText="INSERT into wage values('"+id.Text+"','"+name.Text+"','"+ des + "','"+hours.Text+"','"+wage.Text+"')";
             cmd.ExecuteNonQuery();
             con.Close();
+            refresh();
             MessageBox.Show("saved");
+        }
+        public void refresh()
+        {
+            string str = "select * from wage;";
+            SqlDataAdapter myadapter = new SqlDataAdapter(str, con);
+            DataTable mytable = new DataTable();
+            myadapter.Fill(mytable);
+            BindingSource bs = new BindingSource();
+            bs.DataSource = mytable;
+            dataGridView1.DataSource = bs;
+
         }
     }
 }
