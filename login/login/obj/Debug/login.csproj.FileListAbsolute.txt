@@ -1,0 +1,15 @@
+E:\c#\login\login\bin\Debug\Database1.mdf
+E:\c#\login\login\bin\Debug\Database1_log.ldf
+E:\c#\login\login\bin\Debug\image.mdf
+E:\c#\login\login\bin\Debug\image_log.ldf
+E:\c#\login\login\bin\Debug\login.exe.config
+E:\c#\login\login\bin\Debug\login.exe
+E:\c#\login\login\bin\Debug\login.pdb
+E:\c#\login\login\obj\Debug\login.csprojAssemblyReference.cache
+E:\c#\login\login\obj\Debug\login.Form1.resources
+E:\c#\login\login\obj\Debug\login.Form2.resources
+E:\c#\login\login\obj\Debug\login.Properties.Resources.resources
+E:\c#\login\login\obj\Debug\login.csproj.GenerateResource.cache
+E:\c#\login\login\obj\Debug\login.csproj.CoreCompileInputs.cache
+E:\c#\login\login\obj\Debug\login.exe
+E:\c#\login\login\obj\Debug\login.pdb
