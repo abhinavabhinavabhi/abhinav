@@ -14,11 +14,15 @@ namespace login
 {
     public partial class Form2 : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\c#\login\login\image.mdf;Integrated Security=True");
+       
+        
+     SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\abhinav\abhinav-master\login\login\image.mdf;Integrated Security=True");
         public Form2()
         {
             InitializeComponent();
+            
         }
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -48,7 +52,7 @@ namespace login
            
                 byte[] mypic = File.ReadAllBytes(openFileDialog1.FileName);
             
-           SqlCommand str = new SqlCommand("insert into student values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" +comboBox1.Text+ "',@pic)",con);
+           SqlCommand str = new SqlCommand("insert into student values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" +comboBox1.Text+ "',@pic,'"+dateTimePicker1.Text+"')",con);
            SqlParameter pr = new SqlParameter("@pic", SqlDbType.VarBinary, mypic.Length, ParameterDirection.Input, false, 0, 0, null, DataRowVersion.Current, mypic);
            str.Parameters.Add(pr);
            try
@@ -86,16 +90,30 @@ namespace login
 
         private void button3_Click(object sender, EventArgs e)
         {
-            con.Open();
-            SqlDataAdapter sd = new SqlDataAdapter("select image from student where idno='" + textBox1.Text + "'", con);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-           
-                byte[] myimg = new byte[0];
+            byte[] myimg = null;
+            DataTable dt = null;
             try
             {
-                myimg = (byte[])dt.Rows[0][0];
+                con.Open();
+                SqlDataAdapter sd = new SqlDataAdapter("select name,section,branch,image from student where idno='" + textBox1.Text + "'", con);
+                 dt = new DataTable();
+                sd.Fill(dt);
+                name.Text = (dt.Rows[0][0]).ToString();
+                sec.Text = (dt.Rows[0][1]).ToString();
+                branch.Text = (dt.Rows[0][2]).ToString();
+                //SqlDataReader 
+
+                 myimg = new byte[0];
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            try
+            {
+                myimg = (byte[])dt.Rows[0][3];
+            }
+            
             catch(Exception e3)
             {
                 MessageBox.Show("verify input ");
@@ -104,6 +122,24 @@ namespace login
             pictureBox1.Image = Image.FromStream(ms);
             con.Close();
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            name.Text = null;
+            sec.Text = null;
+            branch.Text = null;
+            textBox1.Text = null;
+            textBox2.Text = null;
+            textBox3.Text = null;
+            textBox5.Text = null;
+            comboBox1.Text = null;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            pictureBox1.Image=
         }
     }
 }
